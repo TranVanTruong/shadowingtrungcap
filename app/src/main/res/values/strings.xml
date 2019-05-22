@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">ShadowingTrungap</string>
+    <string name="app_name">Shadowing - 日本語を話そう</string>
+    <string name="ads_interstitial">ca-app-pub-8877440675991474/1876078906</string>
+    <string name="ads_banner">ca-app-pub-8877440675991474/1649558639</string>
+    <string name="ads_app_id">ca-app-pub-8877440675991474~9245196791</string>
 </resources>

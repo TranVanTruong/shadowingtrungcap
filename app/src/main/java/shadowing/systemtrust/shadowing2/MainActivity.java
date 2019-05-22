@@ -1,14 +1,16 @@
 package shadowing.systemtrust.shadowing2;
 
+
 import android.content.Intent;
-import android.net.MailTo;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 
 import java.util.List;
 
@@ -33,6 +35,12 @@ public class MainActivity extends BaseActivity {
         } else {
             productView.setVisibility(View.GONE);
         }
+        MobileAds.initialize(this,
+                getString(R.string.ads_app_id));
+
+        AdView mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().addTestDevice(Constant.ADS_DEVICE_TEST).build();
+        mAdView.loadAd(adRequest);
         shadowingAdapter.setOnItemClickListener(new ShadowingAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Product shadowing, int position) {

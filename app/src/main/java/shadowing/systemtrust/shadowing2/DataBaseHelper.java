@@ -159,7 +159,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.close();
         return list;
     }
-    public List<Product> getFraccionInfo(String id) {
+    public List<Product> getFraccionInfo(int id) {
         List<Product> list = new ArrayList<Product>();
         SQLiteDatabase database = this.getReadableDatabase();
         String selectQuery = "SELECT * FROM Section_tbl WHERE UnitID ='" + id + "'";
@@ -176,4 +176,16 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return list;
     }
 
+    public Product getProduct(String id) {
+        Product list = new Product();
+        SQLiteDatabase database = this.getReadableDatabase();
+        String selectQuery = "SELECT * FROM Section_Content WHERE AudioFile ='" + id + "'";
+        Cursor cursor = database.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            list.setId(cursor.getInt(0));
+            list.setName(cursor.getString(2));
+            list.setDetail(cursor.getString(7));
+        }
+        return list;
+    }
 }  
