@@ -76,7 +76,7 @@ public class ReadDetailActivity extends BaseActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        jcplayerView.createNotification();
+        jcplayerView.createNotification(R.mipmap.mussic);
 
     }
 
@@ -128,13 +128,15 @@ public class ReadDetailActivity extends BaseActivity {
 
         @Override
         public void onPreparedAudio(@NotNull JcStatus jcStatus) {
+            jcplayerView.initWithTitlePlaylist(jcAudios, jcStatus.getJcAudio().getTitle().replace("audio/", ""));
             viewread.setText(mDatabase.getProduct(jcStatus.getJcAudio().getTitle().replace("audio/", "")).getDetail());
         }
 
         @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
         @Override
         public void onStopped(@NotNull JcStatus jcStatus) {
-            if(ReadDetailActivity.this.isDestroyed() || ReadDetailActivity.this.isFinishing())return;
+            if (ReadDetailActivity.this.isDestroyed() || ReadDetailActivity.this.isFinishing())
+                return;
             jcplayerView.playAudio(jcplayerView.getMyPlaylist().get(0));
 
         }
