@@ -1,8 +1,10 @@
 package shadowing.systemtrust.shadowing2;
 
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -129,8 +131,11 @@ public class ReadDetailActivity extends BaseActivity {
             viewread.setText(mDatabase.getProduct(jcStatus.getJcAudio().getTitle().replace("audio/", "")).getDetail());
         }
 
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
         @Override
         public void onStopped(@NotNull JcStatus jcStatus) {
+            if(ReadDetailActivity.this.isDestroyed() || ReadDetailActivity.this.isFinishing())return;
+            jcplayerView.playAudio(jcplayerView.getMyPlaylist().get(0));
 
         }
 
